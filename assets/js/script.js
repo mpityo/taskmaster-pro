@@ -103,13 +103,22 @@ $(".list-group").on("click", "span", function() {
 
   // swap out elements
   $(this).replaceWith(dateInput);
+  
+  // enable jquery ui datepicker
+  dateInput.datepicker({
+	  minDate: 1
+	  onClose: function () {
+	  	// when calendar is closed, force a "change" event on the 'dateInput'
+		$(this).trigger("change");
+	  }
+  });
 
   // automatically focus on new element
   dateInput.trigger("focus");
 });
 
 // outside of the input area that was created above was clicked
-$(".list-group").on("blur", "input[type='text']", function () {  
+$(".list-group").on("change", "input[type='text']", function () {  
   // get current text
   var date = $(this)
     .val()
@@ -150,6 +159,11 @@ $("#task-form-modal").on("show.bs.modal", function() {
 $("#task-form-modal").on("shown.bs.modal", function() {
   // highlight textarea
   $("#modalTaskDescription").trigger("focus");
+});
+
+// display calendar for due date in modal
+$("#modalDueDate").datepicker({
+	minDate: 1
 });
 
 // save button in modal was clicked
