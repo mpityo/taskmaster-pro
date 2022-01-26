@@ -209,16 +209,16 @@ $(".card .list-group").sortable({
 	tolerance: "pointer",
 	helper: "clone",
 	activate: function (event) {
-		console.log("activate", this);
+		$(this).className("dropover");
 	},
 	deactivate: function (event) {
-		console.log("deactivate", this);
+		$(this).remove(".dropover");
 	},
 	over: function (event) {
-		console.log("over", event.target);
+		$(event.target).className("dropover-active");
 	},
 	out: function (event) {
-		console.log("out", event.target);
+		$(event.target).remove(".dropover-active");
 	},
 	update: function (event) {
 		var tempArr = [];
