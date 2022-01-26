@@ -285,6 +285,13 @@ var auditTask = function (taskEl) {
   }
 }
 
+// set a timer to check for task due dates every 30 minutes
+setInterval(function() {
+	$(".card .list-group-item").each(function(index, el) {
+		auditTask(el);
+	});
+}, 1800000);
+
 // load tasks for the first time
 loadTasks();
 
